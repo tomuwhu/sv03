@@ -11,7 +11,7 @@
 	const i = (x, y, n) => 1 + n * y + x
 	function rerender(x) {
 		;(render = false), (h1 = 0), (h2 = 0), (h1t = []), (h2t = [])
-		if (help) umj(x)
+		if (help) umj('mjxx', x)
 		else render = true
 	}
 </script>
@@ -24,7 +24,7 @@
 			on:click={() => {
 				help = !help
 				setTimeout(() => {
-					if (help) umj(sx)
+					if (help) umj('mjxx', sx)
 				}, 100)
 			}}>Problem</button
 		>{/if}
@@ -34,9 +34,11 @@
 <br />
 <div>
 	n = {sx}
-	({(n - 1) ** 2}≤{sx}≤{n ** 2} ⇒ {n}x{n} - {sx} = {n ** 2 == sx
-		? `0) filled all`
-		: `${n ** 2 - sx} unused)`}
+	<b
+		>{(n - 1) ** 2} ≤ {sx} ≤ {n ** 2} ⇒ {n} * {n} - {sx} = {n ** 2 == sx
+			? `0 filled all`
+			: `${n ** 2 - sx} unused`}</b
+	>
 	{#if help}
 		<span>
 			🗝 <span id="mjxx" /> = {(sx * (sx + 1)) / 2}{@html ((sx * (sx + 1)) / 2) % 2
