@@ -19,30 +19,30 @@
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	<script>
-		function umj(x) {
-			document.getElementById("mjxx").innerHTML = `$\\sum_{ i=1 } ^ { ${x}} i$`
+		function umj(target, x) {
+			document.getElementById(target).innerHTML = `$\\sum_{ i=1 } ^ { ${x}} i$`
 			MathJax.typeset()
 		}
 	</script>
 	
-		<link href="./_app/immutable/assets/3.ad38157e.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.b2bb7e3a.js">
+		<link href="./_app/immutable/assets/3.5d1265ff.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.d66fec24.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.8b5db029.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.4a030575.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.808b621a.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.44bf212c.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.808c18a8.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/3.a3b75916.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.d8c7818c.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.1d64d62a.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.7c1d6a48.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.5a5db20c.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.ce40a952.js">
 </head>
 
 <body data-sveltekit-preload-data="hover">
-	<div style="display: contents">  <br> <h1 class="svelte-c3jtp0">
-	Two Sets <button class="svelte-c3jtp0" data-svelte-h="svelte-1fomnwu">Problem</button></h1> <br> <code class="svelte-c3jtp0" data-svelte-h="svelte-z657w7">Your task is to divide the numbers 1,2,…,n into two sets of equal sum.</code> <br> <div class="svelte-c3jtp0">n = 12
-	(9≤12≤16 ⇒ 4x4 - 12 = 4 unused) </div> <br> <input type="range" min="3" max="100" class="svelte-c3jtp0" value="12"> <br> <br> <table class="svelte-c3jtp0"><td class="s svelte-c3jtp0" id="h1">0</td> <td class="c2 svelte-c3jtp0"></td> <td class="cont svelte-c3jtp0"><table class="svelte-c3jtp0"><tr class="svelte-c3jtp0"> <td draggable="true" id="x1" class="e svelte-c3jtp0">1</td>  <td draggable="true" id="x2" class="e svelte-c3jtp0">2</td>  <td draggable="true" id="x3" class="e svelte-c3jtp0">3</td>  <td draggable="true" id="x4" class="e svelte-c3jtp0">4</td> </tr><tr class="svelte-c3jtp0"> <td draggable="true" id="x5" class="e svelte-c3jtp0">5</td>  <td draggable="true" id="x6" class="e svelte-c3jtp0">6</td>  <td draggable="true" id="x7" class="e svelte-c3jtp0">7</td>  <td draggable="true" id="x8" class="e svelte-c3jtp0">8</td> </tr><tr class="svelte-c3jtp0"> <td draggable="true" id="x9" class="e svelte-c3jtp0">9</td>  <td draggable="true" id="x10" class="e svelte-c3jtp0">10</td>  <td draggable="true" id="x11" class="e svelte-c3jtp0">11</td>  <td draggable="true" id="x12" class="e svelte-c3jtp0">12</td> </tr><tr class="svelte-c3jtp0"> <td draggable="true" id="x13" class="h e svelte-c3jtp0">13</td>  <td draggable="true" id="x14" class="h e svelte-c3jtp0">14</td>  <td draggable="true" id="x15" class="h e svelte-c3jtp0">15</td>  <td draggable="true" id="x16" class="h e svelte-c3jtp0">16</td> </tr></table></td> <td class="c2 svelte-c3jtp0"></td> <td class="s svelte-c3jtp0" id="h2">0</td></table> <br> <a href="https://cses.fi/problemset/task/1092" target="_blank" class="svelte-c3jtp0" data-svelte-h="svelte-1h121q6">CSES Problem Set: Two Sets</a> 
+	<div style="display: contents">  <br> <h1 class="svelte-oe7u5a">
+	Two Sets <button class="svelte-oe7u5a" data-svelte-h="svelte-17x6dpp">Problem</button></h1> <br> <code class="svelte-oe7u5a" data-svelte-h="svelte-z657w7">Your task is to divide the numbers 1,2,…,n into two sets of equal sum.</code> <br> <div class="svelte-oe7u5a">n = 12:
+	<b>9 ≤ n ≤ 16 ⇒ 4 * 4 - 12 = 4 unused</b></div> <br> <input type="range" min="3" max="100" class="svelte-oe7u5a" value="12"> <br> <br> <table class="svelte-oe7u5a"><td class="s svelte-oe7u5a" id="h1">0</td> <td class="c2 svelte-oe7u5a"></td> <td class="cont svelte-oe7u5a"><table class="svelte-oe7u5a"><tr class="svelte-oe7u5a"> <td draggable="true" id="x1" class="e svelte-oe7u5a">1</td>  <td draggable="true" id="x2" class="e svelte-oe7u5a">2</td>  <td draggable="true" id="x3" class="e svelte-oe7u5a">3</td>  <td draggable="true" id="x4" class="e svelte-oe7u5a">4</td> </tr><tr class="svelte-oe7u5a"> <td draggable="true" id="x5" class="e svelte-oe7u5a">5</td>  <td draggable="true" id="x6" class="e svelte-oe7u5a">6</td>  <td draggable="true" id="x7" class="e svelte-oe7u5a">7</td>  <td draggable="true" id="x8" class="e svelte-oe7u5a">8</td> </tr><tr class="svelte-oe7u5a"> <td draggable="true" id="x9" class="e svelte-oe7u5a">9</td>  <td draggable="true" id="x10" class="e svelte-oe7u5a">10</td>  <td draggable="true" id="x11" class="e svelte-oe7u5a">11</td>  <td draggable="true" id="x12" class="e svelte-oe7u5a">12</td> </tr><tr class="svelte-oe7u5a"> <td draggable="true" id="x13" class="h e svelte-oe7u5a">13</td>  <td draggable="true" id="x14" class="h e svelte-oe7u5a">14</td>  <td draggable="true" id="x15" class="h e svelte-oe7u5a">15</td>  <td draggable="true" id="x16" class="h e svelte-oe7u5a">16</td> </tr></table></td> <td class="c2 svelte-oe7u5a"></td> <td class="s svelte-oe7u5a" id="h2">0</td></table> <br> <a href="https://cses.fi/problemset/task/1092" target="_blank" class="svelte-oe7u5a" data-svelte-h="svelte-1h121q6">CSES Problem Set: Two Sets</a> 
 			
 			<script>
 				{
-					__sveltekit_ve40k8 = {
+					__sveltekit_1b4e1vd = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -52,8 +52,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.b2bb7e3a.js"),
-						import("./_app/immutable/entry/app.808b621a.js")
+						import("./_app/immutable/entry/start.d66fec24.js"),
+						import("./_app/immutable/entry/app.1d64d62a.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],

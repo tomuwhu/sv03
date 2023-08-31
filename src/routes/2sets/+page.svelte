@@ -33,13 +33,14 @@
 <code>Your task is to divide the numbers 1,2,…,n into two sets of equal sum.</code>
 <br />
 <div>
-	n = {sx}
-	<b
-		>{(n - 1) ** 2} ≤ {sx} ≤ {n ** 2} ⇒ {n} * {n} - {sx} = {n ** 2 == sx
-			? `0 filled all`
-			: `${n ** 2 - sx} unused`}</b
-	>
-	{#if help}
+	n = {sx}:
+	{#if !help}
+		<b
+			>{(n - 1) ** 2} ≤ n ≤ {n ** 2} ⇒ {n} * {n} - {sx} = {n ** 2 == sx
+				? `0 filled all`
+				: `${n ** 2 - sx} unused`}</b
+		>
+	{:else}
 		<span>
 			🗝 <span id="mjxx" /> = {(sx * (sx + 1)) / 2}{@html ((sx * (sx + 1)) / 2) % 2
 				? `, it is odd => <i>There is no solution.</i>`
@@ -48,7 +49,7 @@
 				? ((sx * (sx + 1)) / 2) % 2
 					? ``
 					: `, <i>but Your solution is wrong!</i>`
-				: `: the target is ${(sx * (sx + 1)) / 4 - Math.max(h1, h2)}`} 🗝
+				: `: the target is ${(sx * (sx + 1)) / 4 - Math.max(h1, h2)}`} 🦊
 		</span>
 	{/if}
 </div>
@@ -212,8 +213,9 @@
 	input {
 		width: 550px;
 	}
-	div {
+	div,
+	code {
 		color: rgb(30, 78, 89);
-		font-size: 13px;
+		font-size: 17px;
 	}
 </style>
