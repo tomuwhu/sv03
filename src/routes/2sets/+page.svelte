@@ -49,7 +49,9 @@
 				? ((sx * (sx + 1)) / 2) % 2
 					? ``
 					: `, <i>but Your solution is wrong!</i>`
-				: `: the target is ${(sx * (sx + 1)) / 4 - Math.max(h1, h2)}`} 🦊
+				: `: the target is ${(sx * (sx + 1)) / 2}/2 (${
+						(sx * (sx + 1)) / 4 - Math.max(h1, h2)
+				  } left)`} 🦊
 		</span>
 	{/if}
 </div>
