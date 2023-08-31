@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="./favicon.png" />
+	<link rel="stylesheet" href="./style.css">
+	<meta name="viewport" content="width=device-width" />
+	<script>
+		MathJax = {
+			tex: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']]
+			},
+			svg: {
+				fontCache: 'global'
+			}
+		};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script>
+		function umj(x) {
+			document.getElementById("mjxx").innerHTML = `$\\sum_{ i=1 } ^ { ${x}} i$`
+			MathJax.typeset()
+		}
+	</script>
+	
+		<link href="./_app/immutable/assets/3.54bb1f48.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.e40c0b93.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.8b5db029.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.8626fc4b.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.1f6b1fb1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.44bf212c.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.808c18a8.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.29b57bd5.js">
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">  <h1 class="svelte-19611tb">
+		Two Sets
+		<button class="svelte-19611tb" data-svelte-h="svelte-1fomnwu">Problem</button></h1> <code class="svelte-19611tb" data-svelte-h="svelte-z657w7">Your task is to divide the numbers 1,2,…,n into two sets of equal sum.</code> <div class="svelte-19611tb">n = 12
+	(9≤12≤16 ⇒ 4x4 - 12 = 4 unused) </div> <br> <input type="range" min="3" max="100" class="svelte-19611tb" value="12"> <table class="svelte-19611tb"><td class="s svelte-19611tb" id="h1">0</td> <td class="c2 svelte-19611tb"></td> <td class="cont svelte-19611tb"><table class="svelte-19611tb"><tr class="svelte-19611tb"> <td draggable="true" id="x1" class="e svelte-19611tb">1</td>  <td draggable="true" id="x2" class="e svelte-19611tb">2</td>  <td draggable="true" id="x3" class="e svelte-19611tb">3</td>  <td draggable="true" id="x4" class="e svelte-19611tb">4</td> </tr><tr class="svelte-19611tb"> <td draggable="true" id="x5" class="e svelte-19611tb">5</td>  <td draggable="true" id="x6" class="e svelte-19611tb">6</td>  <td draggable="true" id="x7" class="e svelte-19611tb">7</td>  <td draggable="true" id="x8" class="e svelte-19611tb">8</td> </tr><tr class="svelte-19611tb"> <td draggable="true" id="x9" class="e svelte-19611tb">9</td>  <td draggable="true" id="x10" class="e svelte-19611tb">10</td>  <td draggable="true" id="x11" class="e svelte-19611tb">11</td>  <td draggable="true" id="x12" class="e svelte-19611tb">12</td> </tr><tr class="svelte-19611tb"> <td draggable="true" id="x13" class="h e svelte-19611tb">13</td>  <td draggable="true" id="x14" class="h e svelte-19611tb">14</td>  <td draggable="true" id="x15" class="h e svelte-19611tb">15</td>  <td draggable="true" id="x16" class="h e svelte-19611tb">16</td> </tr></table></td> <td class="c2 svelte-19611tb"></td> <td class="s svelte-19611tb" id="h2">0</td></table> <br> <a href="https://cses.fi/problemset/task/1092" target="_blank" class="svelte-19611tb" data-svelte-h="svelte-1h121q6">CSES Problem Set: Two Sets</a> 
+			
+			<script>
+				{
+					__sveltekit_1pfna3i = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("./_app/immutable/entry/start.e40c0b93.js"),
+						import("./_app/immutable/entry/app.1f6b1fb1.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+</body>
+
+</html>
