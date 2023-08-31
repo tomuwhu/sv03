@@ -41,10 +41,12 @@
 		<span>
 			🗝 <span id="mjxx" /> = {(sx * (sx + 1)) / 2}{@html ((sx * (sx + 1)) / 2) % 2
 				? `, it is odd => <i>There is no solution.</i>`
-				: `, it is even => <b>There are solutions</b>`}
-			{@html ((sx * (sx + 1)) / 2) % 2 || (sx * (sx + 1)) / 4 - Math.max(h1, h2) < 0
-				? ((sx * (sx + 1)) / 2) % 2 ? `` : `, <i>but Your solution is wrong</i>`
-				: `: target is ${(sx * (sx + 1)) / 4 - Math.max(h1, h2)}`} 🗝
+				: `, it is even => <b>There are solutions</b>`}{@html ((sx * (sx + 1)) / 2) % 2 ||
+			(sx * (sx + 1)) / 4 - Math.max(h1, h2) < 0
+				? ((sx * (sx + 1)) / 2) % 2
+					? ``
+					: `, <i>but Your solution is wrong!</i>`
+				: `: the target is ${(sx * (sx + 1)) / 4 - Math.max(h1, h2)}`} 🗝
 		</span>
 	{/if}
 </div>
