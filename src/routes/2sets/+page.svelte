@@ -12,6 +12,7 @@
 	function rerender(x) {
 		;(render = false), (h1 = 0), (h2 = 0), (h1t = []), (h2t = [])
 		if (help) umj(x)
+    else render=true
 	}
 </script>
 <br />
