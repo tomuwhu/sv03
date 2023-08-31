@@ -12,9 +12,10 @@
 	function rerender(x) {
 		;(render = false), (h1 = 0), (h2 = 0), (h1t = []), (h2t = [])
 		if (help) umj(x)
-    else render=true
+		else render = true
 	}
 </script>
+
 <br />
 <h1>
 	<!-- svelte-ignore missing-declaration -->
@@ -40,8 +41,10 @@
 		<span>
 			🗝 <span id="mjxx" /> = {(sx * (sx + 1)) / 2}{@html ((sx * (sx + 1)) / 2) % 2
 				? `, it is odd => <i>There is no solution.</i>`
-				: `, it is even => <b>There are solutions.</b>`}, Target: {(sx * (sx + 1)) / 4 -
-				Math.max(h1, h2)} 🗝
+				: `, it is even => <b>There are solutions</b>`}
+			{@html ((sx * (sx + 1)) / 2) % 2 || (sx * (sx + 1)) / 4 - Math.max(h1, h2) < 0
+				? ((sx * (sx + 1)) / 2) % 2 ? `` : `, <i>but Your solution is wrong</i>`
+				: `: target is ${(sx * (sx + 1)) / 4 - Math.max(h1, h2)}`} 🗝
 		</span>
 	{/if}
 </div>
