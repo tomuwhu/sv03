@@ -12,14 +12,12 @@
 	function rerender(x) {
 		;(render = false), (h1 = 0), (h2 = 0), (h1t = []), (h2t = [])
 		if (help) umj(x)
-		render = true
 	}
 </script>
-
-{#if render}
-	<h1>
-		<!-- svelte-ignore missing-declaration -->
-		Two Sets
+<br />
+<h1>
+	<!-- svelte-ignore missing-declaration -->
+	Two Sets {#if render}
 		<button
 			on:click={() => {
 				help = !help
@@ -27,10 +25,11 @@
 					if (help) umj(sx)
 				}, 100)
 			}}>Problem</button
-		>
-	</h1>
-{/if}
+		>{/if}
+</h1>
+<br />
 <code>Your task is to divide the numbers 1,2,…,n into two sets of equal sum.</code>
+<br />
 <div>
 	n = {sx}
 	({(n - 1) ** 2}≤{sx}≤{n ** 2} ⇒ {n}x{n} - {sx} = {n ** 2 == sx
@@ -38,17 +37,25 @@
 		: `${n ** 2 - sx} unused)`}
 	{#if help}
 		<span>
-			🗝 <span id="mjxx" /> = {(sx * (sx + 1)) / 2}
-			{@html ((sx * (sx + 1)) / 2) % 2
-				? `is odd => <i>There is no solution.</i>`
-				: `is even => <b>There are solutions.</b>`}, Target: {(sx * (sx + 1)) / 4 -
+			🗝 <span id="mjxx" /> = {(sx * (sx + 1)) / 2}{@html ((sx * (sx + 1)) / 2) % 2
+				? `, it is odd => <i>There is no solution.</i>`
+				: `, it is even => <b>There are solutions.</b>`}, Target: {(sx * (sx + 1)) / 4 -
 				Math.max(h1, h2)} 🗝
 		</span>
 	{/if}
 </div>
-
 <br />
-<input type="range" bind:value={sx} min={3} max={100} on:input={() => rerender(sx)} />
+<input
+	type="range"
+	bind:value={sx}
+	min={3}
+	max={100}
+	on:input={() => rerender(sx)}
+	on:mouseup={() => (render = true)}
+	on:keyup={() => (render = true)}
+/>
+<br />
+<br />
 {#if render}
 	<table>
 		<td
@@ -199,6 +206,6 @@
 	}
 	div {
 		color: rgb(30, 78, 89);
-		font-size: 10px;
+		font-size: 13px;
 	}
 </style>
