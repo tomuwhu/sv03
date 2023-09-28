@@ -6,22 +6,22 @@
     var cf = new Map([
         ['p', '♟'],['r', '♜'],['n', '♞'],['b', '♝'],['q', '♛'],['k', '♚'], [null, ' ']
     ])
-    function drop(c, loc) {
-        console.log(st.square+"x"+loc);
+    function drop(loc) {
         try {
             chess.move(st.square+"x"+loc)
             fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
                 chess.move(v.data)
                 cb = chess.board()
             })
-        } catch(e) {}
-        try {
-            chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
-            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
-                chess.move(v.data)
-                cb = chess.board()
-            })
-        } catch(e) {}
+        } catch(e) {
+            try {
+                chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
+                fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
+                    chess.move(v.data)
+                    cb = chess.board()
+                })
+            } catch(e) {}
+        }
         cb = chess.board()
     }
 </script>
@@ -31,7 +31,7 @@
         <tr>
             {#each cr as c, j}
                 <td class={`x`+(i+j)%2}
-                    on:drop={() => drop(c, String.fromCharCode(97+j)+(8-i))}
+                    on:drop={() => drop(String.fromCharCode(97+j)+(8-i))}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
