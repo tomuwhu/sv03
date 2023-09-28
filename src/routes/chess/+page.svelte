@@ -62,10 +62,12 @@
 <span class="hist">{hist.join(' - ')}</span>
 
 <style>
+    * {
+        user-select: none;
+    }
     table {
         margin: auto;
         border-spacing: 8px;
-        user-select: none;
     }
     :global(table.red) {
         background-color: rgb(210, 98, 98);
