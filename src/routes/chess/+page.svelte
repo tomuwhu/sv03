@@ -1,8 +1,9 @@
 <script>
     import { Chess } from 'chess.js'
-    var st = null, cb
+    var st = null, cb, next, hist
     const chess = new Chess()
     cb = chess.board()
+    next=chess.turn()
     var cf = new Map([
         ['p', '♟'],['r', '♜'],['n', '♞'],['b', '♝'],['q', '♛'],['k', '♚'], [null, ' ']
     ])
@@ -12,6 +13,8 @@
             fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
                 chess.move(v.data)
                 cb = chess.board()
+                hist = chess.history()
+                next=chess.turn()
             })
         } catch(e) {
             try {
@@ -19,10 +22,14 @@
                 fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
                     chess.move(v.data)
                     cb = chess.board()
+                    hist = chess.history()
+                    next=chess.turn()
                 })
             } catch(e) {}
         }
         cb = chess.board()
+        hist = chess.history()
+        next=chess.turn()
     }
 </script>
 <h1>Sakk</h1>
@@ -30,12 +37,12 @@
     {#each cb as cr, i}
         <tr>
             {#each cr as c, j}
-                <td class={`x`+(i+j)%2}
+                <td class={`x`+(i+j)%2+' '+next}
                     on:drop={() => drop(String.fromCharCode(97+j)+(8-i))}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
-                        draggable="true"
+                        draggable={next=='w'?true:false}
                         on:dragstart={() => {
                             st = c
                         }} 
@@ -60,6 +67,9 @@
         box-shadow: 1px 1px 3px black;
         border-radius: 8px;
     }
+    td.next {
+        cursor: pointer;
+    }
     td.x1 {
         background-color: rgb(148, 174, 174);
     }
@@ -79,5 +89,8 @@
         background: transparent;
         color:rgb(224, 220, 121);
         text-shadow: 1px 1px 3px black;
+    }
+    td.b span {
+        cursor: default;
     }
 </style>
