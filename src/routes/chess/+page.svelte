@@ -10,23 +10,27 @@
     function drop(loc) {
         try {
             chess.move(st.square+"x"+loc)
-            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove').then(v => v.json()).then( v => {
-                chess.move(v.data)
-                cb = chess.board()
-                hist = chess.history()
-                next=chess.turn()
-                mate=chess.isCheckmate()
-            })
-        } catch(e) {
-            if (st.type != 'p' || loc[0] == st.square[0]) try {
-                chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
-                fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove').then(v => v.json()).then( v => {
+            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove')
+                .then(v => v.json())
+                .then( v => {
                     chess.move(v.data)
                     cb = chess.board()
                     hist = chess.history()
                     next=chess.turn()
                     mate=chess.isCheckmate()
                 })
+        } catch(e) {
+            if (st.type != 'p' || loc[0] == st.square[0]) try {
+                chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
+                fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove')
+                    .then(v => v.json())
+                    .then( v => {
+                        chess.move(v.data)
+                        cb = chess.board()
+                        hist = chess.history()
+                        next=chess.turn()
+                        mate=chess.isCheckmate()
+                    })
             } catch(e) {}
         }
         cb = chess.board()
@@ -48,11 +52,8 @@
                     on:drop={() => drop(String.fromCharCode(97+j)+(8-i))}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
-                    <span
-                        draggable={next=='w' && !mate ? true : false}
-                        on:dragstart={() => {
-                            st = c
-                        }} 
+                    <span draggable={next=='w' && !mate ? true : false}
+                        on:dragstart={() => st = c} 
                         class={c && c.color}>{cf.get(c && c.type)}</span>
                 </td>
             {/each}
@@ -114,9 +115,16 @@
         cursor: default;
     }
     span.hist {
-        font-size: 9px;
+        background-color: antiquewhite;
+        border-radius: 10px;
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 15px;
+        font-size: 11px;
         display: inline-block;
         max-width: 80%;
+        color: green;
     }
     h1.matt {
         color: brown;
