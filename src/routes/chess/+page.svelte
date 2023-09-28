@@ -1,6 +1,6 @@
 <script>
     import { Chess } from 'chess.js'
-    var st = null, cb, next, hist=[], mate, iam='w'
+    var st = null, cb, next, hist=[], mate, iam='w', msg = ''
     const chess = new Chess()
     cb = chess.board()
     next = chess.turn()
@@ -12,8 +12,14 @@
         chess.undo()
         refresh()
     }
+    const turn = () => {
+        chess.reset()
+        iam =  iam == 'b' ? 'w' : 'b'
+        fetcfish()
+    }
     const refresh = () => {
         cb = chess.board()
+        if (iam == 'b') cb.reverse()
         hist = chess.history()
         next = chess.turn()
         mate = checkmate()
@@ -23,20 +29,17 @@
         +'&depth=11&mode=bestmove')
         .then(v => v.json())
         .then( v => {
+            console.log(v.data.split(" ")[1])
             chess.move(v.data.split(" ")[1])
             refresh()
         })
     const checkmate = () => chess.isCheckmate() ? 'Matt' : chess.isDraw() ? 'Döntetlen'  : ''
     function drop(loc) {
+        msg = ''
         try {
-            chess.move(st.square+"x"+loc)
+            chess.move(st.square + loc)
             fetcfish()
-        } catch(e) {
-            if (st.type.toLowerCase() != 'p' || loc[0].toLowerCase() == st.square[0].toLowerCase()) try {
-                chess.move('g1f3')
-                fetcfish()
-            } catch(e) {console.log(e)}
-        }
+        } catch(e) {msg = ["Hibás lépés: " + e.toString().split(" ")[3]]}
         refresh()
     }
 </script>
@@ -46,13 +49,15 @@
 <h1>Sakk</h1> 
 {/if}
 <button on:click={() => undo()}>Visszalép</button>
+<button on:click={() => turn()}>Fordít</button>
 <table class={mate?'red':next == iam ? 'norm' : 'yt'}>
     {#each cb as cr, i}
         <tr>
             {#each cr as c, j}
                 <td class={`x`+(i+j)%2 + ' ' + (next == iam ? 'iam' : '')}
                     on:drop={() => {
-                        drop(String.fromCharCode(97+j)+(8-i))
+                        if (iam == 'w') drop(String.fromCharCode(97+j)+(8-i))
+                        else drop(String.fromCharCode(97+j)+(i+1))
                     }}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -64,7 +69,7 @@
         </tr>
     {/each}
 </table>
-<span class="hist">{hist.join(' - ')}</span>
+<span class="hist">{hist.join(' - ')} <i>{msg}</i></span>
 
 <style>
     * {
@@ -138,9 +143,12 @@
         margin: 5px;
         border-radius: 7px;
         box-shadow: 1px 1px 3px black;
-        background-color: aqua;
-        padding: 6px;
+        background-color: rgb(187, 244, 244);
+        padding: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
         cursor: pointer;
+        font-size: 12px;
     }
     button:hover {
         box-shadow: 1px 1px 3px black;
@@ -149,5 +157,8 @@
     button:active {
         box-shadow: 1px 1px 3px black;
         background-color: rgb(255, 89, 0);
+    }
+    i {
+        color: red;
     }
 </style>
