@@ -18,7 +18,7 @@
                 mate=chess.isCheckmate()
             })
         } catch(e) {
-            try {
+            if (st.type != 'p' || loc[0] == st.square[0]) try {
                 chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
                 fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove').then(v => v.json()).then( v => {
                     chess.move(v.data)
@@ -40,11 +40,12 @@
 {:else}
 <h1>Sakk</h1> 
 {/if}
+{mate} {next}
 <table class={mate?'red':next=='w'?'norm':'yt'}>
     {#each cb as cr, i}
         <tr>
             {#each cr as c, j}
-                <td class={`x`+(i+j)%2+' '+next}
+                <td class={`x`+(i+j)%2 + ' ' + next}
                     on:drop={() => drop(String.fromCharCode(97+j)+(8-i))}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
