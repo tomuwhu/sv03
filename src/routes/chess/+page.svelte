@@ -1,6 +1,6 @@
 <script>
     import { Chess } from 'chess.js'
-    var st = null, cb, next, hist
+    var st = null, cb, next, hist, mate
     const chess = new Chess()
     cb = chess.board()
     next=chess.turn()
@@ -10,29 +10,36 @@
     function drop(loc) {
         try {
             chess.move(st.square+"x"+loc)
-            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
+            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove').then(v => v.json()).then( v => {
                 chess.move(v.data)
                 cb = chess.board()
                 hist = chess.history()
                 next=chess.turn()
+                mate=chess.isCheckmate()
             })
         } catch(e) {
             try {
                 chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
-                fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
+                fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=11&mode=bestmove').then(v => v.json()).then( v => {
                     chess.move(v.data)
                     cb = chess.board()
                     hist = chess.history()
                     next=chess.turn()
+                    mate=chess.isCheckmate()
                 })
             } catch(e) {}
         }
         cb = chess.board()
         hist = chess.history()
         next=chess.turn()
+        mate = chess.isCheckmate()
     }
 </script>
-<h1>Sakk</h1>
+{#if mate}
+<h1>Matt</h1>
+{:else}
+<h1>Sakk</h1> 
+{/if}
 <table>
     {#each cb as cr, i}
         <tr>
@@ -42,7 +49,7 @@
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
-                        draggable={next=='w'?true:false}
+                        draggable={next=='w' && !mate ? true : false}
                         on:dragstart={() => {
                             st = c
                         }} 
