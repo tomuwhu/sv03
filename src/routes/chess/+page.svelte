@@ -50,7 +50,7 @@
 <h1>Sakk</h1> 
 {/if}
 <button on:click={() => undo()}>Visszalép</button>
-<button on:click={() => turn()}>Fordít</button>
+<button on:click={() => turn()}>Új játék</button>
 <table class={mate?'red':next == iam ? 'norm' : 'yt'}>
     {#each cb as cr, i}
         <tr>
@@ -76,12 +76,18 @@
     * {
         user-select: none;
     }
+    h1 {
+        color: rgb(62, 80, 80);
+        text-shadow: 1px 1px 3px gray;
+        padding: 0px;
+    }
     table {
         margin: auto;
         border-spacing: 8px;
         border-radius: 12px;
         box-shadow: 1px 1px 3px inset black;
-        padding: 15px;
+        padding: 8px;
+        border: solid 1px black;
     }
     :global(table.red) {
         background-color: rgb(210, 98, 98);
@@ -90,7 +96,7 @@
         background-color: rgb(157, 194, 178);
     }
     :global(table.yt) {
-        background-color: rgb(158, 195, 227);
+        background-color: rgb(225, 227, 158);
     }
     td {
         color: rgb(6, 40, 47);
@@ -143,13 +149,15 @@
     }
     button {
         all: unset;
-        margin: 5px;
+        text-shadow: 1px 1px 3px rgb(110, 110, 110);
+        margin: 7px;
         border-radius: 7px;
         box-shadow: 1px 1px 3px black;
         background-color: rgb(187, 244, 244);
-        padding: 1px;
+        padding: 3px;
         padding-left: 10px;
         padding-right: 10px;
+        border: solid 1px black;
         cursor: pointer;
         font-size: 12px;
     }
