@@ -1,6 +1,6 @@
 <script>
     import { Chess } from 'chess.js'
-    var st = null, cb, next, hist, mate
+    var st = null, cb, next, hist=[], mate
     const chess = new Chess()
     cb = chess.board()
     next=chess.turn()
@@ -36,11 +36,11 @@
     }
 </script>
 {#if mate}
-<h1>Matt</h1>
+<h1 class="matt">Matt</h1>
 {:else}
 <h1>Sakk</h1> 
 {/if}
-<table>
+<table class={mate?'red':next=='w'?'norm':'yt'}>
     {#each cb as cr, i}
         <tr>
             {#each cr as c, j}
@@ -59,11 +59,22 @@
         </tr>
     {/each}
 </table>
+<span class="hist">{hist.join(' - ')}</span>
+
 <style>
     table {
         margin: auto;
         border-spacing: 8px;
         user-select: none;
+    }
+    :global(table.red) {
+        background-color: rgb(210, 98, 98);
+    }
+    :global(table.norm) {
+        background-color: rgb(157, 194, 178);
+    }
+    :global(table.yt) {
+        background-color: rgb(158, 195, 227);
     }
     td {
         color: rgb(6, 67, 81);
@@ -99,5 +110,13 @@
     }
     td.b span {
         cursor: default;
+    }
+    span.hist {
+        font-size: 9px;
+        display: inline-block;
+        max-width: 80%;
+    }
+    h1.matt {
+        color: brown;
     }
 </style>
