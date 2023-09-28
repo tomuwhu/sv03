@@ -1,6 +1,6 @@
 <script>
     import { Chess } from 'chess.js'
-    const initialboard = '4k3/8/8/8/8/8/4P3/4K3 w - - 5 39'
+    const initialboard = 'rnbqkbnr/ppppppp1/8/7p/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
     var st = null, cb, next, hist=[], mate
     const chess = new Chess()
     cb = chess.board()
