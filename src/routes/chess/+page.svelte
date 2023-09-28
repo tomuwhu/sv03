@@ -1,6 +1,6 @@
 <script>
     import { Chess } from 'chess.js'
-    var st = null, cb, next, hist=[], mate, iam='w', msg = ''
+    var st = null, cb, next, hist=[], mate, iam='w', msg = '', depth = Math.round(Math.random()*4)+9
     const chess = new Chess()
     cb = chess.board()
     next = chess.turn()
@@ -28,7 +28,7 @@
     }
     const fetcfish = () => fetch('https://stockfish.online/api/stockfish.php?fen='
         +chess.fen()
-        +'&depth=11&mode=bestmove')
+        +`&depth=${depth}&mode=bestmove`)
         .then(v => v.json())
         .then( v => {
             chess.move(v.data.split(" ")[1])
