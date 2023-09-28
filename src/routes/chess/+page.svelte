@@ -118,7 +118,7 @@
         margin: 0px;
         padding: 0px;
         width: 40px;
-        transform: translateY(0px);
+        transform: translateY(-3px);
         cursor: grab;
         background: transparent;
         text-shadow: 0px 0px 4px white;
