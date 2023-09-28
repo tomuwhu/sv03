@@ -29,7 +29,6 @@
         +'&depth=11&mode=bestmove')
         .then(v => v.json())
         .then( v => {
-            console.log(v.data.split(" ")[1])
             chess.move(v.data.split(" ")[1])
             refresh()
         })
