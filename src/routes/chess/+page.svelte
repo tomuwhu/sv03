@@ -10,9 +10,17 @@
         console.log(st.square+"x"+loc);
         try {
             chess.move(st.square+"x"+loc)
+            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
+                chess.move(v.data)
+                cb = chess.board()
+            })
         } catch(e) {}
         try {
             chess.move(st.type!='p'?st.type.toUpperCase()+loc:loc)
+            fetch('https://stockfish.online/api/stockfish.php?fen='+chess.fen()+'&depth=13&mode=bestmove').then(v => v.json()).then( v => {
+                chess.move(v.data)
+                cb = chess.board()
+            })
         } catch(e) {}
         cb = chess.board()
     }
@@ -22,13 +30,13 @@
     {#each cb as cr, i}
         <tr>
             {#each cr as c, j}
-                <td on:drop={() => drop(c, String.fromCharCode(97+j)+(8-i))}
+                <td class={`x`+(i+j)%2}
+                    on:drop={() => drop(c, String.fromCharCode(97+j)+(8-i))}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
                         draggable="true"
                         on:dragstart={() => {
-                            console.log(c)
                             st = c
                         }} 
                         class={c && c.color}>{cf.get(c && c.type)}</span>
@@ -48,8 +56,12 @@
         font-size: 40px;
         width: 50px;
         height: 50px;
-        background-color: antiquewhite;
+        background-color: rgb(202, 195, 184);
         box-shadow: 1px 1px 3px black;
+        border-radius: 8px;
+    }
+    td.x1 {
+        background-color: rgb(148, 174, 174);
     }
     td span {
         margin: 0px;
@@ -65,7 +77,7 @@
         margin-top: -10px;
         cursor: grab;
         background: transparent;
-        color:rgb(95, 122, 113);
+        color:rgb(224, 220, 121);
         text-shadow: 1px 1px 3px black;
     }
 </style>
