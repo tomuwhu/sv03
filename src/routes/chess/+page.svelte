@@ -149,14 +149,13 @@
     }
     button {
         all: unset;
+        width: 60px;
         text-shadow: 1px 1px 3px rgb(110, 110, 110);
         margin: 7px;
         border-radius: 7px;
         box-shadow: 1px 1px 3px black;
         background-color: rgb(187, 244, 244);
         padding: 3px;
-        padding-left: 10px;
-        padding-right: 10px;
         border: solid 1px black;
         cursor: pointer;
         font-size: 12px;
