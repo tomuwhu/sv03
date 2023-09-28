@@ -1,12 +1,14 @@
 <script>
     import { Chess } from 'chess.js'
+    const initialboard = '4k3/8/8/8/8/8/4P3/4K3 w - - 5 39'
     var st = null, cb, next, hist=[], mate
-    const chess = new Chess()
+    const chess = new Chess(initialboard)
     cb = chess.board()
     next=chess.turn()
     var cf = new Map([
         ['p', '♟'],['r', '♜'],['n', '♞'],['b', '♝'],['q', '♛'],['k', '♚'], [null, ' ']
     ])
+    const checkmate = () => chess.isCheckmate() ? 'Matt' : chess.isDraw() ? 'Döntetlen'  : ''
     function drop(loc) {
         try {
             chess.move(st.square+"x"+loc)
@@ -17,7 +19,7 @@
                     cb = chess.board()
                     hist = chess.history()
                     next=chess.turn()
-                    mate=chess.isCheckmate()
+                    mate = checkmate()
                 })
         } catch(e) {
             if (st.type != 'p' || loc[0] == st.square[0]) try {
@@ -29,14 +31,14 @@
                         cb = chess.board()
                         hist = chess.history()
                         next=chess.turn()
-                        mate=chess.isCheckmate()
+                        mate = checkmate()
                     })
             } catch(e) {}
         }
         cb = chess.board()
         hist = chess.history()
-        next=chess.turn()
-        mate = chess.isCheckmate()
+        next = chess.turn()
+        mate = checkmate()
     }
 </script>
 {#if mate}
