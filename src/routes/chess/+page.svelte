@@ -116,6 +116,7 @@
         cursor: grab;
         background: transparent;
         text-shadow: 0px 0px 4px white;
+        vertical-align: middle;
     }
     td span.w {
         color:rgb(224, 220, 121);
