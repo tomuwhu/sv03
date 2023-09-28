@@ -55,14 +55,14 @@
     {#each cb as cr, i}
         <tr>
             {#each cr as c, j}
-                <td class={`x`+(i+j)%2 + ' ' + (next == iam ? 'iam' : '')}
+                <td class={`x`+(i+j)%2 + ' ' + (c && c.color == iam ? '' : 'iam')}
                     on:drop={() => {
                         if (iam == 'w') drop(String.fromCharCode(97+j)+(8-i))
                         else drop(String.fromCharCode(97+j)+(i+1))
                     }}
                     on:dragover={e => (e.preventDefault(), true)}>
                     <!-- svelte-ignore a11y-no-static-element-interactions -->
-                    <span draggable={next == iam && !mate ? true : false}
+                    <span draggable={c && c.color == iam && !mate ? true : false}
                         on:dragstart={() => st = c} 
                         class={c && c.color}>{cf.get(c && c.type)}</span>
                 </td>
@@ -111,7 +111,8 @@
         display: inline-block;
         margin: 0px;
         padding: 0px;
-        margin-top: -20px;
+        width: 40px;
+        transform: translateY(0px);
         cursor: grab;
         background: transparent;
         text-shadow: 0px 0px 4px white;
@@ -120,7 +121,7 @@
         color:rgb(224, 220, 121);
         text-shadow: 0px 0px 4px black;
     }
-    td.aim span {
+    td.iam span {
         cursor: default;
     }
     span.hist {
