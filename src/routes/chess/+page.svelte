@@ -40,7 +40,6 @@
 {:else}
 <h1>Sakk</h1> 
 {/if}
-{mate} {next}
 <table class={mate?'red':next=='w'?'norm':'yt'}>
     {#each cb as cr, i}
         <tr>
