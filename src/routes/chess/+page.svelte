@@ -1,7 +1,7 @@
 <script>
     import { Chess } from 'chess.js'
     var st = null, cb, next, hist=[], mate, iam='w', msg = '', depth = Math.round(Math.random()*4)+9
-    const chess = new Chess()
+    const chess = new Chess(`rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/QNQQKQNQ w KQkq - 0 1`)
     cb = chess.board()
     next = chess.turn()
     var cf = new Map([
@@ -31,13 +31,14 @@
         +`&depth=${depth}&mode=bestmove`)
         .then(v => v.json())
         .then( v => {
-            chess.move(v.data.split(" ")[1])
+            if (!chess.isCheckmate()) chess.move(v.data.split(" ")[1])
             refresh()
         })
     const checkmate = () => chess.isCheckmate() ? 'Matt' : chess.isDraw() ? 'Döntetlen'  : ''
     const drop = loc => {
         msg = ''
         try {
+            if (st.type=='p' && st.square[1]==7 && loc[1]==8) loc+="Q"
             chess.move(st.square + loc)
             fetcfish()
         } catch(e) {msg = ["Hibás lépés: " + e.toString().split(" ")[3]]}
