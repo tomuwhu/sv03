@@ -1,7 +1,7 @@
 <script>
     import { Chess } from 'chess.js'
     var st = null, cb, next, hist=[], mate, iam='w', msg = '', depth = Math.round(Math.random()*4)+9
-    const chess = new Chess(`rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/QNQQKQNQ w KQkq - 0 1`)
+    const chess = new Chess()
     cb = chess.board()
     next = chess.turn()
     var cf = new Map([
